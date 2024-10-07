@@ -44,6 +44,9 @@ object NetworkModule {
         .build()
 
     @Provides
+    fun provideGson(): Gson = Gson()
+
+    @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         gson: Gson
