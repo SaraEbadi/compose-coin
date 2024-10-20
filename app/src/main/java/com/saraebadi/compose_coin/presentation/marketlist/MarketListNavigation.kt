@@ -9,7 +9,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.saraebadi.compose_coin.domain.model.MarketResponse
+import com.saraebadi.compose_coin.domain.model.Market
 import com.saraebadi.compose_coin.presentation.marketdetails.MarketDetailsScreen
 import kotlinx.serialization.Serializable
 import kotlin.reflect.typeOf
@@ -22,7 +22,7 @@ data object MarketList
 
 @Serializable
 data class MarketDetails(
-    val marketResponse: MarketResponse
+    val market: Market
 )
 
 fun NavGraphBuilder.marketListScreen(navController: NavController) {
@@ -39,11 +39,11 @@ fun NavGraphBuilder.marketListScreen(navController: NavController) {
 
     composable<MarketDetails> (
         typeMap = mapOf(
-            typeOf<MarketResponse>() to MarketNavType.marketItemType
+            typeOf<Market>() to MarketNavType.marketItemType
         )
     ){
         val route = it.toRoute<MarketDetails>()
-        MarketDetailsScreen(marketItem = route.marketResponse)
+        MarketDetailsScreen(marketItem = route.market)
     }
 }
 

@@ -2,8 +2,8 @@ package com.saraebadi.compose_coin.presentation.marketlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.saraebadi.compose_coin.domain.model.MarketResponse
-import com.saraebadi.compose_coin.domain.model.usecase.GetMarketListUseCase
+import com.saraebadi.compose_coin.domain.model.Market
+import com.saraebadi.compose_coin.domain.usecase.GetMarketListUseCase
 import com.saraebadi.compose_coin.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ class MarketListViewModel@Inject constructor(
     private val marketListUseCase: GetMarketListUseCase
 ): ViewModel() {
 
-    private val _state: MutableStateFlow<UiState<List<MarketResponse>>> = MutableStateFlow(UiState.Loading)
+    private val _state: MutableStateFlow<UiState<List<Market>>> = MutableStateFlow(UiState.Loading)
     val state = _state.asStateFlow()
 
     init {

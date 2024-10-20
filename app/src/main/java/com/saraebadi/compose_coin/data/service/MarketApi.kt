@@ -1,6 +1,6 @@
 package com.saraebadi.compose_coin.data.service
 
-import com.saraebadi.compose_coin.domain.model.MarketResponse
+import com.saraebadi.compose_coin.data.dto.MarketResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
