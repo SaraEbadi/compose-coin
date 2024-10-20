@@ -9,7 +9,7 @@ class MarketRepositoryImp @Inject constructor(
     private val remoteDataSource: MarketDataSource
 ) : MarketRepository {
     override suspend fun getMarketList(): List<Market> {
-        return remoteDataSource.getMarketList(20, 1).map {
+        return remoteDataSource.getMarketList("usd",20, 1).map {
             it.toMarket()
         }
     }

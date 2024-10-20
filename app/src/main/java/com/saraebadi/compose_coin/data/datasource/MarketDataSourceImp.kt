@@ -7,7 +7,7 @@ import javax.inject.Inject
 class MarketDataSourceImp@Inject constructor(
     private val api: MarketApi
 ) : MarketDataSource {
-    override suspend fun getMarketList(perPage: Int, page: Int): List<MarketResponse> {
-        return api.getMarkets(perPage, page)
+    override suspend fun getMarketList(currency: String, perPage: Int, page: Int): List<MarketResponse> {
+        return api.getMarkets(currency, perPage, page)
     }
 }
