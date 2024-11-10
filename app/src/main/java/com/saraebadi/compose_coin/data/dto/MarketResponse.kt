@@ -1,14 +1,12 @@
-package com.saraebadi.compose_coin.domain.model
+package com.saraebadi.compose_coin.data.dto
 
 import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
-@Serializable
 data class MarketResponse(
     @SerialName("id") val id: String,
     @SerialName("name") val name: String,
     @SerialName("symbol") val symbol: String,
-    @SerialName("image") val image: String,
+    @SerialName("image") val imageUrl: String,
     @SerialName("current_price") val currentPrice: Double,
     @SerialName("total_volume") val totalVolume: Double,
     @SerialName("total_supply") val totalSupply: Double,
