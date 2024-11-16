@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "compose-coin"
 include(":app")
- 
+include(":feature")
+include(":feature:marketlist")
