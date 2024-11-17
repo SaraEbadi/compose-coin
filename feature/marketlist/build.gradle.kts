@@ -1,6 +1,11 @@
 plugins {
-    alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.secrets.gradle)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -36,11 +41,45 @@ android {
 }
 
 dependencies {
+    with(libs) {
+        implementation(androidx.ui)
+        implementation(androidx.core.ktx)
+        implementation(androidx.material3)
+        implementation(androidx.material3.adaptive)
+        implementation(androidx.compose.material3.iconsExtended)
+        implementation(androidx.compose.material3.navigationSuite)
+        implementation(androidx.compose.material3.adaptive.navigation)
+        implementation(compose.navigation)
+        implementation(androidx.ui.graphics)
+        implementation(androidx.activity.compose)
+        implementation(androidx.ui.tooling.preview)
+        implementation(androidx.lifecycle.runtime.ktx)
+        implementation(platform(libs.androidx.compose.bom))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+        kapt(hilt.compiler)
+        implementation(coil)
+        implementation(moshi)
+        implementation(timber)
+        implementation(hilt.compose)
+        implementation(hilt.android)
+        implementation(bundles.arrow)
+        implementation(bundles.okhttp)
+        implementation(bundles.retrofit)
+        api(libs.retrofit.converter.gson)
+        api(libs.gson)
+        implementation(kotlin.immutable)
+        implementation(kotlinx.serialization.json)
+
+        debugImplementation(androidx.ui.tooling)
+        debugImplementation(androidx.ui.test.manifest)
+
+        testImplementation(junit)
+        androidTestImplementation(androidx.junit)
+        androidTestImplementation(androidx.espresso.core)
+        androidTestImplementation(androidx.ui.test.junit4)
+        androidTestImplementation(platform(libs.androidx.compose.bom))
+
+        implementation(projects.domain.market)
+    }
+
 }

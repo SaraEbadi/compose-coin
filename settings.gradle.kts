@@ -22,5 +22,8 @@ dependencyResolutionManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "compose-coin"
 include(":app")
+include(":core")
+include(":domain")
+include(":data")
 include(":feature")
 include(":feature:marketlist")
