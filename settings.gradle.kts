@@ -19,6 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "compose-coin"
 include(":app")
 include(":feature")
