@@ -17,7 +17,7 @@ class MarketListViewModel@Inject constructor(
     private val marketListUseCase: GetMarketListUseCase
 ): ViewModel() {
 
-    private val _state: MutableStateFlow<UiState<List<Market>>> = MutableStateFlow(UiState.Loading)
+    private val _state: MutableStateFlow<MarketListState> = MutableStateFlow(MarketListState())
     val state = _state.asStateFlow()
 
     init {
@@ -25,12 +25,13 @@ class MarketListViewModel@Inject constructor(
     }
 
     fun getMarketList() {
-        _state.update { UiState.Loading }
+        _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             try {
-                _state.update { UiState.Success(marketListUseCase())}
+                val response = marketListUseCase()
+                _state.update { it.copy(isLoading = false, markets = response) }
             } catch (e: Exception) {
-                _state.update { UiState.Error(e.message)}
+                _state.update { it.copy(isLoading = false, error = e.message ?: "Something went wrong!") }
             }
         }
     }
