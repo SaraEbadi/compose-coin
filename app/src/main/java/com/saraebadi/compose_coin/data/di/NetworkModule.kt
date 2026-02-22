@@ -1,6 +1,7 @@
 package com.saraebadi.compose_coin.data.di
 
 import com.google.gson.Gson
+import com.saraebadi.compose_coin.BuildConfig
 import com.saraebadi.compose_coin.data.service.MarketApi
 import dagger.Module
 import dagger.Provides
@@ -16,15 +17,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     private const val BASE_URL = "https://api.coingecko.com/api/v3/"
-    private const val API_KEY = "CG-LFeaPuTuNWrGPXc11aRwmq26"
 
 
     @Provides
     fun provideInterceptor(): Interceptor = Interceptor { chain ->
         val originalRequest = chain.request()
-        val newRequest = originalRequest.newBuilder()
+        val newRequest = originalRequest
+            .apply { this.url.newBuilder().addQueryParameter("x_cg_demo_api_key", BuildConfig.API_KEY) }
+            .newBuilder()
             .addHeader("content-type", "application/json")
-            .addHeader("x-cg-demo-api-key", API_KEY)
             .build()
         chain.proceed(newRequest)
     }
