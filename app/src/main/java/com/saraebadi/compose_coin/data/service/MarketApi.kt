@@ -12,3 +12,6 @@ interface MarketApi {
         @Query("per_page") perPage: Int,
     ): List<MarketResponse>
 }
+
+//https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
+//https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd
