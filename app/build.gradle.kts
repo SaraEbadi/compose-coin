@@ -74,6 +74,7 @@ dependencies {
         implementation(bundles.arrow)
         implementation(bundles.okhttp)
         implementation(bundles.retrofit)
+        implementation(retrofit.serialization.converter)
         api(libs.retrofit.converter.gson)
         api(libs.gson)
         implementation(kotlin.immutable)
