@@ -1,10 +1,10 @@
 package com.saraebadi.compose_coin.data.mapper
 
-import com.saraebadi.compose_coin.data.dto.MarketResponse
+import com.saraebadi.compose_coin.data.dto.MarketDto
 import com.saraebadi.compose_coin.domain.model.Market
 
 
-fun MarketResponse.toMarket() : Market = Market(
+fun MarketDto.toMarket() : Market = Market(
     id = id,
     name = name,
     symbol = symbol,
