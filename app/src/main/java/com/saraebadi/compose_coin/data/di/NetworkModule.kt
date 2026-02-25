@@ -7,11 +7,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -23,7 +25,7 @@ object NetworkModule {
     fun provideInterceptor(): Interceptor = Interceptor { chain ->
         val originalRequest = chain.request()
         val newRequest = originalRequest
-            .apply { this.url.newBuilder().addQueryParameter("x_cg_demo_api_key", BuildConfig.API_KEY) }
+//            .apply { this.url.newBuilder().addQueryParameter("x_cg_demo_api_key", BuildConfig.API_KEY) }
             .newBuilder()
             .addHeader("content-type", "application/json")
             .build()
@@ -48,14 +50,20 @@ object NetworkModule {
     fun provideGson(): Gson = Gson()
 
     @Provides
+    fun provideJson() = Json {
+        ignoreUnknownKeys = true
+        explicitNulls = true
+    }
+
+    @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
-        gson: Gson
+        json: Json
     ) : Retrofit{
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
 //            .addCallAdapterFactory(EitherCallAdapterFactory.create())
             .build()
     }
