@@ -9,9 +9,9 @@ data class Market(
     val symbol: String = "",
     val imageUrl: String? = null,
     val currentPrice: Double? = 1.1,
-    val totalVolume: Double = 1.2,
-    val totalSupply: Double = 1.2,
-    val marketCap: Double = 1.2,
-    val priceChangePercentage24h: Double = 1.2,
+    val totalVolume: Double = 1.1,
+    val totalSupply: Double ?= 1.2,
+    val marketCap: Long,
+    val priceChangePercentage24h: Double? = 1.2,
     val lastUpdated: String ? = null,
 )

@@ -11,5 +11,5 @@ interface MarketApi {
     ): List<MarketDto>
 }
 
-//https://api.coingecko.com/api/v3/coins/markets?x_cg_demo_api_key=CG-uDxXL4APGoLcZDDqdfq5CRNn?vs_currency=usd
-//https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd
+
+//https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd

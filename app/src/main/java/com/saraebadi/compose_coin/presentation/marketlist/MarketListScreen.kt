@@ -87,12 +87,12 @@ fun MarketListScreen(
 @Composable
 private fun MarketListScreenPreview() {
     val list = listOf(
-        Market(id = "1", name = "zzzzzzzzzz", symbol = "btd", imageUrl = ""),
-        Market(id = "2", name = "xxxxxxxxx", symbol = "btd", imageUrl = ""),
-        Market(id = "3", name = "vvvvvvvvv", symbol = "btd", imageUrl = ""),
-        Market(id = "4", name = "aaaaaaaa", symbol = "btd", imageUrl = ""),
-        Market(id = "5", name = "wwwwwwww", symbol = "btd", imageUrl = ""),
-        Market(id = "6", name = "eeeeee", symbol = "btd", imageUrl = ""),
+        Market(id = "1", name = "zzzzzzzzzz", symbol = "btd", imageUrl = "", marketCap = 22),
+        Market(id = "2", name = "xxxxxxxxx", symbol = "btd", imageUrl = "", marketCap = 22),
+        Market(id = "3", name = "vvvvvvvvv", symbol = "btd", imageUrl = "", marketCap = 22),
+        Market(id = "4", name = "aaaaaaaa", symbol = "btd", imageUrl = "", marketCap = 22),
+        Market(id = "5", name = "wwwwwwww", symbol = "btd", imageUrl = "", marketCap = 22),
+        Market(id = "6", name = "eeeeee", symbol = "btd", imageUrl = "", marketCap = 22),
     )
     MarketListScreen(
         marketListState = MarketListState(markets = list),
