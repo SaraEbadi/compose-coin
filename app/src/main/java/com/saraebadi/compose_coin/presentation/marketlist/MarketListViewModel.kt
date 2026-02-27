@@ -3,6 +3,7 @@ package com.saraebadi.compose_coin.presentation.marketlist
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.saraebadi.compose_coin.domain.model.Market
+import com.saraebadi.compose_coin.domain.model.Result
 import com.saraebadi.compose_coin.domain.usecase.GetMarketListUseCase
 import com.saraebadi.compose_coin.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,11 +28,9 @@ class MarketListViewModel@Inject constructor(
     fun getMarketList() {
         _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            try {
-                val response = marketListUseCase()
-                _state.update { it.copy(isLoading = false, markets = response) }
-            } catch (e: Exception) {
-                _state.update { it.copy(isLoading = false, error = e.message ?: "Something went wrong!") }
+            when(val result = marketListUseCase()) {
+                is Result.Success -> _state.update { it.copy(isLoading = false, markets = result.data) }
+                is Result.Error -> _state.update { it.copy(isLoading = false, error = result.exception) }
             }
         }
     }
